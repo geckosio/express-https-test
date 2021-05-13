@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      li {
+        margin-top: 8px;
+      }
+    </style>
+
+    <p>Log:</p>
+    <ul id="list"></ul>
+    <script>
+      const list = document.getElementById('list')
+
+      const append = (key, value) => {
+        const li = document.createElement('li')
+        li.innerText = `[${key}]: ${value}`
+        list.append(li)
+      }
+
+      append('FETCH', 'fetching .wrtc/v2/connections')
+
+      fetch('.wrtc/v2/connections', { method: 'POST' })
+        .then(res => {
+          return res.json()
+        })
+        .then(json => {
+          console.log(json)
+          for (const [key, value] of Object.entries(json)) {
+            console.log(key, value)
+            append(key, JSON.stringify(value))
+          }
+        })
+        .catch(err => {
+          console.error(err.message)
+          append('error', err.message)
+        })
+    </script>
+  </body>
+</html>
