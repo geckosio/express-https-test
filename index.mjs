@@ -1,7 +1,7 @@
-const geckos = require('@geckos.io/server').default
-const https = require('https')
-const fs = require('fs')
-const express = require('express')
+import geckos from '@geckos.io/server'
+import https from 'https'
+import fs from 'fs'
+import express from 'express'
 
 const key = fs.readFileSync('certs/private')
 const cert = fs.readFileSync('certs/cert')

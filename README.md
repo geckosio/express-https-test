@@ -8,7 +8,7 @@ npm i
 node createCerts.js
 
 # run server
-node index.js
+node index.mjs
 
 # open browser on
 https://localhost:3000/index.html
