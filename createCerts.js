@@ -5,6 +5,8 @@ const pems = selfsigned.generate(attrs, { days: 365 })
 
 const fs = require('fs')
 
+fs.mkdirSync('certs')
+
 fs.writeFileSync('certs/private', pems.private)
 fs.writeFileSync('certs/public', pems.public)
 fs.writeFileSync('certs/cert', pems.cert)
