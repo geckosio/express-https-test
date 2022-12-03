@@ -5,12 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="./geckos.io-client.2.2.3.min.js"></script>
     <title>Document</title>
   </head>
   <body>
     <p>Log:</p>
     <ul id="list"></ul>
     <script>
+      /**
+       * Connect to geckos server
+       */
+      const channel = geckos({
+        port: 3000
+      })
+
+      channel.onConnect(error => {
+        if (error) {
+          console.error('Status: ', error.status)
+          console.error('StatusText: ', error.statusText)
+        }
+        console.log(channel.userData)
+      })
+
+      /**
+       * Just some information for debugging
+       */
       const list = document.getElementById('list')
 
       const append = (key, value) => {
